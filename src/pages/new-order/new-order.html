@@ -7,14 +7,32 @@
 <ion-content padding>
   <h4>Informe aonde o motoboy deve ir</h4>
 
-  <ion-card>
-    <ion-card-header>1ª parada</ion-card-header>
+  <ion-card *ngFor="let stop of stops; let i = index ">
+    <ion-card-header>
+      <strong>{{ i+1 }}ª parada</strong>
+      <button ion-button icon-only float-right (tap)="removeStop(stop)" *ngIf="i > 1">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-card-header>
     <ion-card-content>
-      <button ion-button block>Selecionar endereço</button>
+      <button color="light" ion-button block (tap)="selectAddress(stop.location)">
+        Selecionar endereço
+      </button>
       <ion-item>
         <ion-label floating>O que fazer neste endereço?</ion-label>
-        <ion-textarea fz-elastic></ion-textarea>>
+        <ion-textarea fz-elastic [(ngModel)]="stop.instructions"></ion-textarea>>
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <div text-center padding-bottom>
+    <button ion-button icon-left (tap)="addStop()">
+      <ion-icon name="add"></ion-icon>
+      Parada
+    </button>
+  </div>
+
+  <button ion-button block (tap)="makeOrder(order)" [disabled]="true">
+    Fazer pedido
+  </button>
 </ion-content>

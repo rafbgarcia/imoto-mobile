@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { OrdersPage } from '../pages/orders/orders';
 import { NewOrderPage } from '../pages/new-order/new-order';
+import { SelectAddressPage } from '../pages/select-address/select-address';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,6 +24,7 @@ import { ElasticModule } from 'angular2-elastic'
     OrdersPage,
     HomePage,
     NewOrderPage,
+    SelectAddressPage,
   ],
   imports: [
     ElasticModule,
@@ -40,6 +42,7 @@ import { ElasticModule } from 'angular2-elastic'
     OrdersPage,
     HomePage,
     NewOrderPage,
+    SelectAddressPage,
   ],
   providers: [
     AbstractGraphqlService,
