@@ -6,7 +6,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation'
 import { GraphqlService } from '../services/graphql.service'
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { OrdersPage } from '../pages/orders/orders';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,8 +29,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Início', component: HomePage },
+      { title: 'Pedidos', component: OrdersPage }
     ];
 
   }

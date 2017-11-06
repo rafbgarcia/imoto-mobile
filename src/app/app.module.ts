@@ -5,7 +5,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { OrdersPage } from '../pages/orders/orders';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +17,7 @@ import { GraphqlService } from '../services/graphql.service'
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    OrdersPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +27,7 @@ import { GraphqlService } from '../services/graphql.service'
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    OrdersPage
   ],
   providers: [
     AbstractGraphqlService,
