@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
 
@@ -27,6 +28,7 @@ import { ElasticModule } from 'angular2-elastic'
     SelectAddressPage,
   ],
   imports: [
+    HttpModule,
     ElasticModule,
     BrowserModule,
     IonicModule.forRoot(MyApp, {}, {

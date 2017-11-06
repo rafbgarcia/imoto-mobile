@@ -15,12 +15,23 @@
       </button>
     </ion-card-header>
     <ion-card-content>
-      <button color="light" ion-button block (tap)="selectAddress(stop)">
+      <button color="light" ion-button block (tap)="selectAddress(stop)" *ngIf="!stop.location">
         Selecionar endereço
       </button>
+      <button ion-item (tap)="selectAddress(stop)" *ngIf="stop.location">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <ion-icon name="pin"></ion-icon>
+            {{stop.location.formattedAddress}}
+          </div>
+          <button color="light" ion-button (tap)="selectAddress(stop)">
+            Trocar
+          </button>
+        </div>
+      </button>
       <ion-item>
-        <ion-label floating>O que fazer neste endereço?</ion-label>
-        <ion-textarea fz-elastic [(ngModel)]="stop.instructions"></ion-textarea>>
+        <ion-label stacked>O que fazer neste endereço?</ion-label>
+        <ion-textarea placeholder="Ex: Pegar um documento com João" fz-elastic [(ngModel)]="stop.instructions"></ion-textarea>
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -32,7 +43,7 @@
     </button>
   </div>
 
-  <button ion-button block (tap)="makeOrder(order)" [disabled]="true">
+  <button ion-button block (tap)="makeOrder(order)" [disabled]="!canMakeOrder()">
     Fazer pedido
   </button>
 </ion-content>

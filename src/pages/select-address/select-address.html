@@ -1,12 +1,41 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>SelectAddressPage</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (tap)="viewCtrl.dismiss()" color="light">
+        <ion-icon large name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Buscar endereço</ion-title>
   </ion-navbar>
 
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="query"
+      [showCancelButton]="true"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)"
+      [showCancelButton]="true"
+      [animated]="true"
+      placeholder="Digite o local ou endereço"
+      debounce="500"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-list *ngIf="results">
+    <ion-list-header>Resultados</ion-list-header>
+    <ion-item *ngIf="results.length === 0">Nenhum resultado</ion-item>
+    <button ion-item *ngFor="let result of results" (tap)="selectLocation(result)">
+      {{result.formatted_address}}
+    </button>
+  </ion-list>
+
+  <p *ngIf="!results">Digite uma busca</p>
+
+  <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
 
 </ion-content>

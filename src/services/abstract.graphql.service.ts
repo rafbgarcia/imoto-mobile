@@ -23,7 +23,7 @@ export class AbstractGraphqlService {
     })
   }
 
-  protected query(query, variables = {}) {
+  query(query, variables = {}) {
     return this.graph(this.prepareQuery(query), variables)
   }
 
