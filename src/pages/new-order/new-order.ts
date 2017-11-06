@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { SelectAddressPage } from '../select-address/select-address';
 
 @Component({
   selector: 'page-new-order',
@@ -11,6 +12,7 @@ export class NewOrderPage {
 
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams
   ) {}
 
@@ -20,6 +22,16 @@ export class NewOrderPage {
 
   addStop() {
     this.stops.push({})
+  }
+
+  selectAddress(stop) {
+    const modal = this.modalCtrl.create(SelectAddressPage)
+    modal.onDidDismiss((data) => {
+      if (data) {
+        stop.location = data.location
+      }
+    })
+    modal.present()
   }
 
 }

@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import googleMapsClient from '@google/maps'
 
-/**
- * Generated class for the SelectAddressPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-select-address',
   templateUrl: 'select-address.html',
 })
 export class SelectAddressPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  googleMaps:any
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+  ) {
+    this.googleMaps = googleMapsClient.createClient({
+      language: 'pt-BR',
+      types: ['(cities)'],
+      componentRestrictions: { country: "br" },
+      key: 'AIzaSyAtVnwzCXe_FGqYQ6KwjSyaZQMr67Bn9kU',
+    })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SelectAddressPage');
+    this.googleMaps.places({query: "rua nova aurora natal rn"}, (data) => {
+      console.log(data)
+    })
   }
 
 }
