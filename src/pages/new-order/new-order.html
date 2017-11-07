@@ -18,7 +18,8 @@
       <button color="light" ion-button block (tap)="selectAddress(stop)" *ngIf="!stop.location">
         Selecionar endereço
       </button>
-      <button ion-item (tap)="selectAddress(stop)" *ngIf="stop.location">
+
+      <section *ngIf="stop.location">
         <div class="d-flex align-items-center justify-content-between">
           <div>
             <ion-icon name="pin"></ion-icon>
@@ -28,7 +29,8 @@
             Trocar
           </button>
         </div>
-      </button>
+      </section>
+
       <ion-item>
         <ion-label stacked>O que fazer neste endereço?</ion-label>
         <ion-textarea placeholder="Ex: Pegar um documento com João" fz-elastic [(ngModel)]="stop.instructions"></ion-textarea>

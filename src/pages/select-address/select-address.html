@@ -28,7 +28,7 @@
 
   <ion-list *ngIf="results">
     <ion-list-header>Resultados</ion-list-header>
-    <ion-item *ngIf="results.length === 0">Nenhum resultado</ion-item>
+    <ion-item detail-none *ngIf="results.length === 0">Nenhum resultado</ion-item>
     <button ion-item *ngFor="let result of results" (tap)="selectLocation(result)">
       {{result.formatted_address}}
     </button>
