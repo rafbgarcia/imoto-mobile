@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
+import { IonicStorageModule } from '@ionic/storage'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { GraphqlService } from '../services/graphql.service'
+import { CustomerService } from '../services/customer.service'
 
 import { ElasticModule } from 'angular2-elastic'
 
@@ -29,6 +31,7 @@ import { ElasticModule } from 'angular2-elastic'
     ConfirmOrderPage,
   ],
   imports: [
+    IonicStorageModule.forRoot(),
     HttpModule,
     ElasticModule,
     BrowserModule,
@@ -50,6 +53,7 @@ import { ElasticModule } from 'angular2-elastic'
   ],
   providers: [
     GraphqlService,
+    CustomerService,
 
     StatusBar,
     SplashScreen,

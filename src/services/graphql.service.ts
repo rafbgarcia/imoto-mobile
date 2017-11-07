@@ -3,7 +3,8 @@ import * as GraphQLClient from 'graphql.js'
 
 @Injectable()
 export class GraphqlService {
-  host = false ? 'https://togodelivery.com.br/api/graphql' : "http://192.168.1.15:4001/api/graphql"
+  // host = false ? 'https://togodelivery.com.br/api/graphql' : "http://192.168.1.15:4001/api/graphql"
+  host = false ? 'https://togodelivery.com.br/api/graphql' : "http://localhost:4001/api/graphql"
   graphql:any
 
   public init(authToken) {

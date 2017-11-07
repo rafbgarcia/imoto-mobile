@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
 import { GraphqlService } from '../services/graphql.service'
+import { CustomerService } from '../services/customer.service'
 
 import { HomePage } from '../pages/home/home';
 import { OrdersPage } from '../pages/orders/orders';
@@ -24,9 +25,12 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public screenOrientation: ScreenOrientation,
     private graphql: GraphqlService,
+    private customer: CustomerService,
    ) {
-    this.initGraphql()
-    this.initializeApp();
+    this.customer.loadFromStorage().then((customer) => {
+      this.initGraphql(customer)
+      this.initializeApp()
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -54,10 +58,21 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  private initGraphql() {
-    this.graphql.init("data.currentUser.authToken")
-    // this.graphql.currentUser().then((data) => {
-    //   this.graphql.init("data.currentUser.authToken")
-    // })
+  private initGraphql(customer) {
+    this.graphql.init(customer.authToken)
+
+    this.graphql.run(this.query()).then((data) => {
+      this.graphql.init(data.customer.authToken)
+    })
+  }
+
+  private query() {
+    return `query currentCustomer {
+      customer: currentCustomer {
+        name
+        phoneNumber
+        authToken
+      }
+    }`
   }
 }
