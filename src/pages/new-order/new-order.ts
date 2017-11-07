@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController, NavController, AlertController } from 'ionic-angular';
 import { SelectAddressPage } from '../select-address/select-address';
 import { GraphqlService } from '../../services/graphql.service';
+import { ConfirmOrderPage } from '../confirm-order/confirm-order';
 
 @Component({
   selector: 'page-new-order',
@@ -16,7 +17,12 @@ export class NewOrderPage {
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public graphql: GraphqlService,
-  ) {}
+  ) {
+    this.stops = [
+      {instructions: "Pegar documento com Rafael", location: { placeId: "ChIJW6OVlYD_sgcRRE1dnSbHrHk", formattedAddress: "Rua Lafayette Lamartine - Candelária, Natal - RN, 59064-510, Brasil" }},
+      {instructions: "Deixar na portaria", location: { placeId: "ChIJbZTnEBMAswcRjqOmKBgnpWc", formattedAddress: "Av. Campos Sáles, 703 - Tirol, Natal - RN, 59020-300, Brasil" }},
+    ]
+  }
 
   removeStop(stop) {
     this.stops = this.stops.filter((aStop) => aStop != stop)
@@ -37,13 +43,13 @@ export class NewOrderPage {
   }
 
   makeOrder() {
-    this.stops.map((stop, i) => stop.sequence = i)
+    const orderParams = this.buildOrderParams()
 
-    this.graphql.query(this.makeOrderMutation).then((data) => {
+    this.graphql.run(this.makeOrderMutation(), orderParams).then((data) => {
       if (data.order.error) {
         this.alertCtrl.create({title: "Ops", message: data.order.error}).present()
       } else {
-        this.navCtrl.push(SelectAddressPage)
+        this.navCtrl.push(ConfirmOrderPage, { order: data.order })
       }
     })
   }
@@ -56,13 +62,22 @@ export class NewOrderPage {
     })
   }
 
+  private buildOrderParams() {
+    const stops = this.stops.map((stop, i) => {
+      stop.sequence = i
+      return stop
+    })
+    return {
+      params: { stops }
+    }
+  }
+
   private makeOrderMutation() {
-    return `mutation createOrder {
-      order: createOrder {
+    return `mutation createOrder($params: OrderParams) {
+      order: createOrder(params: $params) {
         ... on Order {
-          name
-          phoneNumber
-          authToken
+          pending
+          confirmed
         }
 
         ... on Error {

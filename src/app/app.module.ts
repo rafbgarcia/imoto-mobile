@@ -9,11 +9,11 @@ import { HomePage } from '../pages/home/home';
 import { OrdersPage } from '../pages/orders/orders';
 import { NewOrderPage } from '../pages/new-order/new-order';
 import { SelectAddressPage } from '../pages/select-address/select-address';
+import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AbstractGraphqlService } from '../services/abstract.graphql.service'
 import { GraphqlService } from '../services/graphql.service'
 
 import { ElasticModule } from 'angular2-elastic'
@@ -26,6 +26,7 @@ import { ElasticModule } from 'angular2-elastic'
     HomePage,
     NewOrderPage,
     SelectAddressPage,
+    ConfirmOrderPage,
   ],
   imports: [
     HttpModule,
@@ -45,9 +46,9 @@ import { ElasticModule } from 'angular2-elastic'
     HomePage,
     NewOrderPage,
     SelectAddressPage,
+    ConfirmOrderPage,
   ],
   providers: [
-    AbstractGraphqlService,
     GraphqlService,
 
     StatusBar,

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Seu pedido</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <div class="circle" item-start></div>
+      Pedido enviado
+    </ion-item>
+    <ion-item *ngIf="order.pending">
+      <ion-spinner name="crescent" duration="1200" item-start></ion-spinner>
+      Aguardando motoboy
+    </ion-item>
+
+    <ion-item *ngIf="order.confirmed">
+      <span class="circle green" item-start></span>
+      Pedido confirmado
+    </ion-item>
+  </ion-list>
+
+  <section *ngIf="order.confirmed">
+    <div class="mb-3">
+      <ion-icon name="person"></ion-icon>
+      Seu motoboy é {{order.motoboy.name}}
+    </div>
+    <div class="mb-3">
+      <ion-icon name="home"></ion-icon>
+      Afiliado da {{order.motoboy.central.name}}
+    </div>
+  </section>
+</ion-content>

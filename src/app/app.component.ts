@@ -25,6 +25,7 @@ export class MyApp {
     public screenOrientation: ScreenOrientation,
     private graphql: GraphqlService,
    ) {
+    this.initGraphql()
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -53,7 +54,8 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  private initUser() {
+  private initGraphql() {
+    this.graphql.init("data.currentUser.authToken")
     // this.graphql.currentUser().then((data) => {
     //   this.graphql.init("data.currentUser.authToken")
     // })
