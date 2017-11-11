@@ -18,10 +18,10 @@ export class NewOrderPage {
     public alertCtrl: AlertController,
     public graphql: GraphqlService,
   ) {
-    this.stops = [
-      {instructions: "Pegar documento com Rafael", location: { placeId: "ChIJW6OVlYD_sgcRRE1dnSbHrHk", formattedAddress: "Rua Lafayette Lamartine - Candelária, Natal - RN, 59064-510, Brasil" }},
-      {instructions: "Deixar na portaria", location: { placeId: "ChIJbZTnEBMAswcRjqOmKBgnpWc", formattedAddress: "Av. Campos Sáles, 703 - Tirol, Natal - RN, 59020-300, Brasil" }},
-    ]
+    // this.stops = [
+    //   {instructions: "Pegar documento com Rafael", location: { formattedAddress: "Rua Lafayette Lamartine - Candelária, Natal - RN, 59064-510, Brasil" }},
+    //   {instructions: "Deixar na portaria", location: { formattedAddress: "Av. Campos Sáles, 703 - Tirol, Natal - RN, 59020-300, Brasil" }},
+    // ]
   }
 
   removeStop(stop) {
@@ -35,8 +35,8 @@ export class NewOrderPage {
   selectAddress(stop) {
     const modal = this.modalCtrl.create(SelectAddressPage)
     modal.onDidDismiss((data) => {
-      if (data) {
-        stop.location = data
+      if (data && data.location) {
+        stop.location = data.location
       }
     })
     modal.present()
@@ -57,7 +57,7 @@ export class NewOrderPage {
   canMakeOrder() {
     return this.stops.every((stop) => {
       let cond = stop.instructions && stop.instructions.length > 5
-      cond = stop.location && stop.location.placeId.length > 0
+      cond = cond && stop.location
       return cond
     })
   }

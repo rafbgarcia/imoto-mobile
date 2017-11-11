@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (tap)="viewCtrl.dismiss()" color="dark">
+        <ion-icon large name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Detalhes do local</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked><abbr>*</abbr> Qual o nome deste local?</ion-label>
+      <ion-input type="text" [(ngModel)]="location.name" placeholder='Ex: "Casa", "Cartório", "Empresa", "Restaurante"'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked><abbr>*</abbr> Logradouro</ion-label>
+      <ion-input type="text" [(ngModel)]="location.street"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label stacked><abbr>*</abbr> Número</ion-label>
+            <ion-input type="tel" [(ngModel)]="location.number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-8>
+          <ion-item no-lines>
+            <ion-label stacked>Complemento</ion-label>
+            <ion-input type="text" [(ngModel)]="location.complement"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-7>
+          <ion-item no-lines>
+            <ion-label stacked><abbr>*</abbr> Bairro</ion-label>
+            <ion-input type="text" [(ngModel)]="location.neighborhood"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label stacked><abbr>*</abbr> CEP</ion-label>
+            <ion-input type="tel" [(ngModel)]="location.zipcode"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <ion-item no-lines>
+            <ion-label stacked><abbr>*</abbr> Cidade</ion-label>
+            <ion-input type="text" [(ngModel)]="location.city"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item no-lines>
+            <ion-label stacked><abbr>*</abbr> UF</ion-label>
+            <ion-input type="text" [(ngModel)]="location.uf"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item>
+      <ion-label stacked>Ponto de referência</ion-label>
+      <ion-input type="text" [(ngModel)]="location.reference"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button ion-button block [disabled]="!isValid(location)" (tap)="addLocation(location)">Confirmar</button>
+  </div>
+</ion-content>

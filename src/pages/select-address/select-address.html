@@ -26,15 +26,15 @@
 
 <ion-content padding>
 
-  <ion-list *ngIf="results">
+  <ion-list *ngIf="predictions">
     <ion-list-header>Resultados</ion-list-header>
-    <ion-item detail-none *ngIf="results.length === 0">Nenhum resultado</ion-item>
-    <button ion-item *ngFor="let result of results" (tap)="selectLocation(result)">
-      {{result.formatted_address}}
+    <ion-item detail-none *ngIf="predictions.length === 0">Nenhum resultado</ion-item>
+    <button text-wrap ion-item *ngFor="let prediction of predictions" (tap)="selectPrediction(prediction)">
+      {{prediction.description}}
     </button>
   </ion-list>
 
-  <p *ngIf="!results">Digite uma busca</p>
+  <p *ngIf="!predictions">Digite uma busca</p>
 
   <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
 

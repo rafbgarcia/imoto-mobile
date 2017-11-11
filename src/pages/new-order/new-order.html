@@ -4,48 +4,51 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h4>Informe aonde o motoboy deve ir</h4>
+<ion-content class="gray-page">
+  <p class="pl-4 pr-4 pt-4">Informe aonde o motoboy deve ir</p>
 
-  <ion-card *ngFor="let stop of stops; let i = index ">
-    <ion-card-header>
-      <strong>{{ i+1 }}ª parada</strong>
-      <button ion-button icon-only float-right (tap)="removeStop(stop)" *ngIf="i > 1">
+  <section class="mt-5" *ngFor="let stop of stops; let i = index ">
+    <div class="pl-4 d-flex align-items-center justify-content-between">
+      <h5 class="m-0 mb-3">{{ i+1 }}ª parada</h5>
+      <button small ion-button icon-only float-right (tap)="removeStop(stop)" *ngIf="i > 1" color="danger">
         <ion-icon name="trash"></ion-icon>
       </button>
-    </ion-card-header>
-    <ion-card-content>
-      <button color="light" ion-button block (tap)="selectAddress(stop)" *ngIf="!stop.location">
-        Selecionar endereço
-      </button>
+    </div>
 
-      <section *ngIf="stop.location">
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <ion-icon name="pin"></ion-icon>
-            {{stop.location.formattedAddress}}
-          </div>
-          <button color="light" ion-button (tap)="selectAddress(stop)">
-            Trocar
-          </button>
+    <div class="p-4 bg-white">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <ion-icon class="mr-1" name="pin"></ion-icon>
+          <span *ngIf="!stop.location">Informe o local</span>
+          <span *ngIf="stop.location">{{stop.location.name}}</span>
         </div>
-      </section>
+        <button *ngIf="!stop.location" small ion-button round icon-only (tap)="selectAddress(stop)">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button *ngIf="stop.location" small ion-button round icon-only (tap)="selectAddress(stop)" color="light">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </div>
 
-      <ion-item>
-        <ion-label stacked>O que fazer neste endereço?</ion-label>
+      <ion-item class="mt-3" no-padding>
+        <ion-label stacked>O que ele deve fazer neste endereço?</ion-label>
         <ion-textarea placeholder="Ex: Pegar um documento com João" fz-elastic [(ngModel)]="stop.instructions"></ion-textarea>
       </ion-item>
-    </ion-card-content>
-  </ion-card>
+    </div>
+  </section>
 
-  <div text-center padding-bottom>
-    <button ion-button icon-left (tap)="addStop()">
+  <div text-center class="mt-5">
+    <button ion-button icon-left (tap)="addStop()" color="light">
       <ion-icon name="add"></ion-icon>
-      Parada
+      Adicionar parada
     </button>
   </div>
-
-  <button ion-button block (tap)="makeOrder(order)" [disabled]="!canMakeOrder()">
-    Fazer pedido
-  </button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button block (tap)="makeOrder(order)" [disabled]="!canMakeOrder()">
+      Fazer pedido
+    </button>
+  </ion-toolbar>
+</ion-footer>

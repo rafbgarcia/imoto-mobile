@@ -1,4 +1,14 @@
-// http://ionicframework.com/docs/theming/
+$gray-page-background: #f5f8fa;
+$gray-container-background: #eeeef3;
+
+.bg-white {
+  background-color: #fff;
+}
+
+.gray {
+  &-container { background: $gray-container-background }
+  &-page      { background: $gray-page-background }
+}
 
 
 // App Global Sass

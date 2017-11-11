@@ -11,6 +11,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { NewOrderPage } from '../pages/new-order/new-order';
 import { SelectAddressPage } from '../pages/select-address/select-address';
 import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
+import { AddLocationPage } from '../pages/add-location/add-location';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,6 +30,7 @@ import { ElasticModule } from 'angular2-elastic'
     NewOrderPage,
     SelectAddressPage,
     ConfirmOrderPage,
+    AddLocationPage,
   ],
   imports: [
     IonicStorageModule.forRoot(),
@@ -50,6 +52,7 @@ import { ElasticModule } from 'angular2-elastic'
     NewOrderPage,
     SelectAddressPage,
     ConfirmOrderPage,
+    AddLocationPage,
   ],
   providers: [
     GraphqlService,
