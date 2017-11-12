@@ -76,8 +76,8 @@ export class NewOrderPage {
     return `mutation createOrder($params: OrderParams) {
       order: createOrder(params: $params) {
         ... on Order {
+          id
           pending
-          confirmed
         }
 
         ... on Error {
