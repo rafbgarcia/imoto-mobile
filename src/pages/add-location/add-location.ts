@@ -43,7 +43,7 @@ export class AddLocationPage {
   }
 
   private isEmpty(value) {
-    return !value && value.length === 0
+    return !value || value.length === 0
   }
 
   private componentTypes:any = {
@@ -58,7 +58,7 @@ export class AddLocationPage {
 
   private destructGooglePlace(place) {
     const { lat, lng } = place.geometry.location
-    const location = {
+    const location:any = {
       lat,
       lng,
       placeId: place.place_id,
