@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Novo Pedido</ion-title>
+    <ion-title>Instruções</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="gray-page">
   <p class="pl-4 pr-4 pt-2 pb-2">Informe aonde o motoboy deve ir</p>
 
-  <section class="mb-5" *ngFor="let stop of stops; let i = index ">
-    <div class="pl-4 d-flex align-items-center justify-content-between">
-      <h5 class="m-0 mb-3">{{ i+1 }}ª parada</h5>
+  <section class="mt-5" *ngFor="let stop of stops; let i = index ">
+    <div class="pl-4 mb-3 d-flex align-items-center justify-content-between">
+      <h6 class="m-0">{{ i+1 }}ª parada</h6>
       <button small ion-button icon-only float-right (tap)="removeStop(stop)" *ngIf="i > 1" color="danger">
         <ion-icon name="trash"></ion-icon>
       </button>
@@ -17,14 +17,16 @@
 
     <div class="p-4 bg-white">
       <div class="d-flex align-items-center justify-content-between">
-        <div>
-          <ion-icon class="mr-1" name="pin"></ion-icon>
+        <div class="d-flex align-items-center" style="font-size: 1.6rem">
+          <ion-icon class="mr-3" name="pin"></ion-icon>
           <span *ngIf="!stop.location">Informe o local</span>
           <span *ngIf="stop.location">{{stop.location.name}}</span>
         </div>
+
         <button *ngIf="!stop.location" small ion-button round icon-only (tap)="selectAddress(stop)">
           <ion-icon name="add"></ion-icon>
         </button>
+
         <button *ngIf="stop.location" small ion-button round icon-only (tap)="selectAddress(stop)" color="light">
           <ion-icon name="create"></ion-icon>
         </button>
@@ -37,12 +39,14 @@
     </div>
   </section>
 
-  <div text-center class="mt-5">
-    <button ion-button icon-left (tap)="addStop()" color="light">
+  <div class="pl-4 mt-5 d-flex align-items-center">
+    <h6 class="mr-3 mt-0 mb-0">{{stops.length+1}}ª parada</h6>
+    <button ion-button icon-only small round (tap)="addStop()" color="light">
       <ion-icon name="add"></ion-icon>
-      Adicionar parada
     </button>
   </div>
+
+  <div class="mb-5"></div>
 </ion-content>
 
 <ion-footer>

@@ -4,42 +4,42 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item no-padding>
-      <div class="circle green" item-start></div>
+<ion-content>
+  <ion-list class="mt-4">
+    <ion-item>
+      <span class="circle mr-4 ml-3 green" item-start></span>
       Pedido enviado
     </ion-item>
-    <ion-item no-padding *ngIf="order.pending">
+    <ion-item *ngIf="order.pending">
       <ion-spinner name="crescent" duration="1200" item-start></ion-spinner>
       Aguardando motoboy
     </ion-item>
 
-    <ion-item no-padding *ngIf="order.confirmed">
-      <span class="circle green" item-start></span>
+    <ion-item *ngIf="order.confirmed">
+      <span class="circle mr-4 ml-3 green" item-start></span>
       Pedido confirmado
     </ion-item>
 
-    <ion-item no-padding *ngIf="order.canceled">
-      <span class="circle red" item-start></span>
+    <ion-item *ngIf="order.canceled">
+      <span class="circle mr-4 ml-3 red" item-start></span>
       Pedido cancelado
     </ion-item>
 
-    <ion-item text-wrap no-padding *ngIf="order.noMotoboy">
-      <span class="circle red" item-start></span>
+    <ion-item text-wrap *ngIf="order.noMotoboy">
+      <span class="circle mr-4 ml-3 red" item-start></span>
       Não há motoboys disponíveis para pegar seu pedido
     </ion-item>
   </ion-list>
 
-  <section *ngIf="order.confirmed" class="mt-5">
-    <h5>Seu motoboy:</h5>
-    <div class="mb-3">
-      <ion-icon name="person"></ion-icon>
-      {{order.motoboy.name}}
-    </div>
-    <div class="mb-3">
-      <ion-icon name="home"></ion-icon>
-      {{order.motoboy.central.name}}
-    </div>
-  </section>
+  <ion-list *ngIf="order.confirmed" class="mt-3">
+    <ion-list-header no-margin>Entrega confirmada por</ion-list-header>
+    <ion-item>
+      <ion-icon name="person" small item-start></ion-icon>
+      <div>{{order.motoboy.name}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="home" small item-start></ion-icon>
+      <div>{{order.motoboy.central.name}}</div>
+    </ion-item>
+  </ion-list>
 </ion-content>
