@@ -7,16 +7,30 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Chame um motoboy</h3>
-  <p>É simples:</p>
+<ion-content>
+  <div padding>
+    <p>Chamar um motoboy é muito simples</p>
+  </div>
   <ion-list>
-    <ion-item>
-
+    <ion-item text-wrap>
+      <ion-icon name="ios-list-box-outline" item-start></ion-icon>
+      Informe as instruções para o Motoboy
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-icon name="ios-create-outline" item-start></ion-icon>
+      Coloque seus dados
+      <br>
+      <small class="text-muted">Para o motoboy entrar em contato em caso de dúvidas</small>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-icon name="ios-cafe-outline" item-start></ion-icon>
+      Pronto, aproveite!
     </ion-item>
   </ion-list>
 
-  <button style="margin-top: 15rem" ion-button large block secondary (tap)="pushNewOrder()">
-    Chamar Motoboy
-  </button>
+  <div padding>
+    <button style="margin-top: 1rem" ion-button large block secondary (tap)="pushNewOrder()">
+      Chamar Motoboy
+    </button>
+  </div>
 </ion-content>

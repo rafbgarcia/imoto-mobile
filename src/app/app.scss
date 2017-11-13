@@ -10,7 +10,9 @@ $gray-container-background: #eeeef3;
   &-page      { background: $gray-page-background }
 }
 
-
+.text-muted {
+  color: #999;
+}
 
 $values: 0rem, 0.25rem, 0.5rem, 1rem, 1.5rem, 3rem;
 

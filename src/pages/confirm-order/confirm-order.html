@@ -7,26 +7,28 @@
 <ion-content>
   <ion-list class="mt-4">
     <ion-item>
-      <span class="circle mr-4 ml-3 green" item-start></span>
+      <ion-icon name="ios-radio-button-on" item-start small color="secondary"></ion-icon>
       Pedido enviado
     </ion-item>
     <ion-item *ngIf="order.pending">
-      <ion-spinner name="crescent" duration="1200" item-start></ion-spinner>
+      <div item-start style="margin-right: 2.1rem">
+        <ion-spinner name="crescent" duration="1200"></ion-spinner>
+      </div>
       Aguardando motoboy
     </ion-item>
 
     <ion-item *ngIf="order.confirmed">
-      <span class="circle mr-4 ml-3 green" item-start></span>
+      <ion-icon name="ios-radio-button-on" item-start small color="secondary"></ion-icon>
       Pedido confirmado
     </ion-item>
 
     <ion-item *ngIf="order.canceled">
-      <span class="circle mr-4 ml-3 red" item-start></span>
+      <ion-icon name="ios-radio-button-on" item-start small color="danger"></ion-icon>
       Pedido cancelado
     </ion-item>
 
     <ion-item text-wrap *ngIf="order.noMotoboy">
-      <span class="circle mr-4 ml-3 red" item-start></span>
+      <ion-icon name="ios-radio-button-on" item-start small color="danger"></ion-icon>
       Não há motoboys disponíveis para pegar seu pedido
     </ion-item>
   </ion-list>
