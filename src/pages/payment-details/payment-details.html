@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pagamento</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Digite suas informações caso o motoboy precise entrar em contato</ion-list-header>
+    <ion-item>
+      <ion-label stacked><abbr>*</abbr> Seu nome</ion-label>
+      <ion-input type="text" [(ngModel)]="customer.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked><abbr>*</abbr> Seu telefone</ion-label>
+      <ion-input type="tel" [(ngModel)]="customer.phoneNumber"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button block (tap)="makeOrder(order)" [disabled]="!canMakeOrder(customer)">
+      Pedir motoboy
+    </button>
+  </ion-toolbar>
+</ion-footer>

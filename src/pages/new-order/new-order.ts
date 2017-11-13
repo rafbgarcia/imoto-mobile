@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, AlertController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { SelectAddressPage } from '../select-address/select-address';
-import { GraphqlService } from '../../services/graphql.service';
-import { ConfirmOrderPage } from '../confirm-order/confirm-order';
+import { PaymentDetailsPage } from '../payment-details/payment-details';
 
 @Component({
   selector: 'page-new-order',
@@ -15,8 +14,6 @@ export class NewOrderPage {
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public alertCtrl: AlertController,
-    public graphql: GraphqlService,
   ) {
     this.stops = [
       {"location":{"lat":-5.8723353,"lng":-35.1804742,"placeId":"ChIJWbvTVSX_sgcRzyw84ymnSh8","formattedAddress":"Av. Engenheiro Roberto Freire, 3980 - Ponta Negra, Natal - RN, 59090-000, Brasil","formattedPhoneNumber":"(84) 3209-2424","name":"Camarões Restaurante","number":"3980","street":"Av. Engenheiro Roberto Freire","neighborhood":"Ponta Negra","city":"Natal","uf":"RN","country":"BR","zipcode":"59090-000"},"instructions":"Pegar pedido no nome de Rafael Garcia"},
@@ -42,20 +39,13 @@ export class NewOrderPage {
     modal.present()
   }
 
-  makeOrder() {
+  pushPaymentDetails() {
     const orderParams = this.buildOrderParams()
-
-    this.graphql.run(this.makeOrderMutation(), orderParams).then((data) => {
-      if (data.order.error) {
-        this.alertCtrl.create({title: "Ops", message: data.order.error, buttons: ['Ok']}).present()
-      } else {
-        this.navCtrl.push(ConfirmOrderPage, { order: data.order })
-      }
-    })
+    this.navCtrl.push(PaymentDetailsPage, { order: orderParams })
   }
 
-  canMakeOrder() {
-    return this.stops.every((stop) => {
+  canProceed(stops) {
+    return stops.every((stop) => {
       let cond = stop.instructions && stop.instructions.length > 5
       cond = cond && stop.location
       return cond
@@ -67,23 +57,6 @@ export class NewOrderPage {
       stop.sequence = i
       return stop
     })
-    return {
-      params: { stops }
-    }
-  }
-
-  private makeOrderMutation() {
-    return `mutation createOrder($params: OrderParams) {
-      order: createOrder(params: $params) {
-        ... on Order {
-          id
-          pending
-        }
-
-        ... on Error {
-          error
-        }
-      }
-    }`
+    return { stops }
   }
 }

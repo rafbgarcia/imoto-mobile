@@ -47,8 +47,8 @@
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button block (tap)="makeOrder(order)" [disabled]="!canMakeOrder()">
-      Fazer pedido
+    <button ion-button block (tap)="pushPaymentDetails(order)" [disabled]="!canProceed(stops)">
+      Prosseguir
     </button>
   </ion-toolbar>
 </ion-footer>
