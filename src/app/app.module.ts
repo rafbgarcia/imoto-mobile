@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
 import { IonicStorageModule } from '@ionic/storage'
+import { TextMaskModule } from 'angular2-text-mask'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -39,6 +40,7 @@ import { ElasticModule } from 'angular2-elastic'
     HttpModule,
     ElasticModule,
     BrowserModule,
+    TextMaskModule,
     IonicModule.forRoot(MyApp, {}, {
        links: [
         { component: HomePage, name: 'HomePage', segment: 'inicio' },

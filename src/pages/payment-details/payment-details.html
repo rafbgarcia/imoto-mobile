@@ -4,20 +4,17 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-list>
-    <ion-list-header>Digite suas informações caso o motoboy precise entrar em contato</ion-list-header>
-    <ion-item>
-      <ion-label stacked><abbr>*</abbr> Seu nome</ion-label>
-      <ion-input type="text" [(ngModel)]="customer.name"></ion-input>
-    </ion-item>
+  <ion-list-header>Digite suas informações caso o motoboy precise entrar em contato</ion-list-header>
+  <div class="form-group">
+    <label><abbr>*</abbr> Seu nome</label>
+    <input type="text" [(ngModel)]="customer.name">
+  </div>
 
-    <ion-item>
-      <ion-label stacked><abbr>*</abbr> Seu telefone</ion-label>
-      <ion-input type="tel" [(ngModel)]="customer.phoneNumber"></ion-input>
-    </ion-item>
-  </ion-list>
+  <div class="form-group">
+    <label><abbr>*</abbr> Seu telefone</label>
+    <input type="tel" [(ngModel)]="customer.phoneNumber" [textMask]="{mask: phoneMask}">
+  </div>
 </ion-content>
 
 <ion-footer>

@@ -8,7 +8,13 @@ import { GraphqlService } from '../../services/graphql.service';
   templateUrl: 'payment-details.html',
 })
 export class PaymentDetailsPage {
-
+  phoneMask(phoneNumber) {
+    if (phoneNumber.length > 14) {
+      return ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+    } else {
+      return ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+    }
+  }
   customer:any = {name: "", phoneNumber: ""}
   order:any = {}
   constructor(
