@@ -24,11 +24,13 @@ export class SelectAddressPage {
     if (this.query.length < 3) return
     this.setLoading(true)
 
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&input=${this.query}&sensor=true&language=pt-BR`
-    this.http.get(url).map(res => res.json()).subscribe((data) => {
-      this.setLoading(false)
-      this.predictions = data.predictions
-    })
+    const url = `/placesApi/autocomplete/json?key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&input=${this.query}&sensor=true&language=pt-BR`
+    this.http.get(url).map(res => res.json()).subscribe(
+      (data) => {
+        this.setLoading(false)
+        this.predictions = data.predictions
+      }
+    )
   }
 
   onCancel() {

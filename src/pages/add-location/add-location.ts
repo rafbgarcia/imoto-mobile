@@ -23,7 +23,7 @@ export class AddLocationPage {
       content: "Carregando informações do local...",
     })
     loader.present()
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&language=pt-BR`
+    const url = `/placesApi/details/json?placeid=${placeId}&key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&language=pt-BR`
     this.http.get(url).map(res => res.json()).subscribe((data) => {
       this.location = this.destructGooglePlace(data.result)
       loader.dismiss()

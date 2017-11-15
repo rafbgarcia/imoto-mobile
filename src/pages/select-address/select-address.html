@@ -16,7 +16,7 @@
       (ionCancel)="onCancel($event)"
       [showCancelButton]="true"
       [animated]="true"
-      placeholder="Digite o local ou endereço"
+      placeholder="Digite aqui"
       debounce="500"
     >
     </ion-searchbar>
@@ -24,7 +24,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-list *ngIf="predictions">
     <ion-list-header>Resultados</ion-list-header>
@@ -34,7 +34,7 @@
     </button>
   </ion-list>
 
-  <p *ngIf="!predictions">Digite uma busca</p>
+  <p *ngIf="!predictions" padding>Digite o nome do local ou endereço</p>
 
   <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
 
