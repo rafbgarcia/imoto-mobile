@@ -26,6 +26,11 @@
 
 <ion-content>
 
+  <div padding>
+    <p *ngIf="!predictions">Digite o nome do local ou endereço</p>
+    <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+  </div>
+
   <ion-list *ngIf="predictions">
     <ion-list-header>Resultados</ion-list-header>
     <ion-item detail-none *ngIf="predictions.length === 0">Nenhum resultado</ion-item>
@@ -33,10 +38,5 @@
       {{prediction.description}}
     </button>
   </ion-list>
-
-  <div padding>
-    <p *ngIf="!predictions">Digite o nome do local ou endereço</p>
-    <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
-  </div>
 
 </ion-content>
