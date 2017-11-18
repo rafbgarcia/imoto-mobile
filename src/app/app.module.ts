@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation'
 import { IonicStorageModule } from '@ionic/storage'
 import { TextMaskModule } from 'angular2-text-mask'
+import { ElasticModule } from 'angular2-elastic'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -21,7 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GraphqlService } from '../services/graphql.service'
 import { CustomerService } from '../services/customer.service'
 
-import { ElasticModule } from 'angular2-elastic'
+import { HTTP } from '@ionic-native/http';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { ElasticModule } from 'angular2-elastic'
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

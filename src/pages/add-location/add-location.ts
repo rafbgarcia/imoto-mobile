@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { LoadingController, ViewController, NavParams } from 'ionic-angular'
-import { Http } from '@angular/http'
+import { HTTP } from '@ionic-native/http';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -15,7 +15,7 @@ export class AddLocationPage {
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
-    private http: Http,
+    private http: HTTP,
   ) {
     const placeId = navParams.get('placeId')
 
@@ -23,9 +23,10 @@ export class AddLocationPage {
       content: "Carregando informações do local...",
     })
     loader.present()
-    const url = `/placesApi/details/json?placeid=${placeId}&key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&language=pt-BR`
-    this.http.get(url).map(res => res.json()).subscribe((data) => {
-      this.location = this.destructGooglePlace(data.result)
+
+    const url = encodeURI(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyCG1ehktpNiiCFlqIDc1uikmZjuJN3_fx0&language=pt-BR`)
+    this.http.get(url, {}, {}).then((res) => {
+      this.location = this.destructGooglePlace(JSON.parse(res.data).result)
       loader.dismiss()
     })
   }
