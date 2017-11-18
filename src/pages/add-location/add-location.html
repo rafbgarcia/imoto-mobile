@@ -22,16 +22,16 @@
       <ion-input type="text" [(ngModel)]="location.street"></ion-input>
     </ion-item>
 
-    <ion-grid>
+    <ion-grid no-padding>
       <ion-row>
         <ion-col>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked><abbr>*</abbr> Número</ion-label>
             <ion-input type="tel" [(ngModel)]="location.number"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col col-8>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked>Complemento</ion-label>
             <ion-input type="text" [(ngModel)]="location.complement"></ion-input>
           </ion-item>
@@ -39,16 +39,16 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid>
+    <ion-grid no-padding>
       <ion-row>
         <ion-col col-7>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked><abbr>*</abbr> Bairro</ion-label>
             <ion-input type="text" [(ngModel)]="location.neighborhood"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked><abbr>*</abbr> CEP</ion-label>
             <ion-input type="tel" [(ngModel)]="location.zipcode"></ion-input>
           </ion-item>
@@ -56,16 +56,16 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid>
+    <ion-grid no-padding>
       <ion-row>
         <ion-col col-8>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked><abbr>*</abbr> Cidade</ion-label>
             <ion-input type="text" [(ngModel)]="location.city"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
-          <ion-item no-lines>
+          <ion-item>
             <ion-label stacked><abbr>*</abbr> UF</ion-label>
             <ion-input type="text" [(ngModel)]="location.uf"></ion-input>
           </ion-item>

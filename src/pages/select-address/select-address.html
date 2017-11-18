@@ -34,8 +34,9 @@
     </button>
   </ion-list>
 
-  <p *ngIf="!predictions" padding>Digite o nome do local ou endereço</p>
-
-  <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+  <div padding>
+    <p *ngIf="!predictions">Digite o nome do local ou endereço</p>
+    <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+  </div>
 
 </ion-content>
